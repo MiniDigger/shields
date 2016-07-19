@@ -5329,7 +5329,7 @@ cache(function(data, match, sendBadge, request) {
   }
   badgeData.text[1] = 'test';
   sendBadge(format, badgeData);
-});   
+}));   
 
 // Any badge.
 camp.route(/^\/(:|badge\/)(([^-]|--)*?)-(([^-]|--)*)-(([^-]|--)+)\.(svg|png|gif|jpg)$/,
