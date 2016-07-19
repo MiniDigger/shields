@@ -5330,17 +5330,21 @@ cache(function(data, match, sendBadge, request) {
   request('https://api.spiget.org/v2/resources/' + resource, function (error, response, body) {
     if(error || (response.statusCode != 200 && response.statusCode != 404)){
       badgeData.text[1] = 'error';
+      badgeData.colorscheme = 'red';
       sendBadge(format, badgeData);
     }
     if (response.statusCode == 200) {
       var json = JSON.parse(body);
       badgeData.text[1] = json.downloads;
+      badgeData.colorscheme = 'blue';
       sendBadge(format, badgeData);
     }else if(response.statusCode == 404) {
       badgeData.text[1] = 'not found';
+      badgeData.colorscheme = 'red';
       sendBadge(format, badgeData);
     }else{
       badgeData.text[1] = 'error';
+      badgeData.colorscheme = 'red';
       sendBadge(format, badgeData);
     }
   });
