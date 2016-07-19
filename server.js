@@ -5327,8 +5327,23 @@ cache(function(data, match, sendBadge, request) {
   if (badgeData.template === 'social') {
    badgeData.logo = badgeData.logo || logos.github;
   }
-  badgeData.text[1] = 'test';
-  sendBadge(format, badgeData);
+  request('http://www.google.com', function (error, response, body) {
+    if(error || (response.statusCode != 200 && response.statusCode != 404)){
+      badgeData.text[1] = 'error';
+      sendBadge(format, badgeData);
+    }
+    if (response.statusCode == 200) {
+      var body = JSON.parse(buffer);
+      badgeData.text[1] = body.downloads;
+      sendBadge(format, badgeData);
+    }else if(response.statusCode == 404) {
+      badgeData.text[1] = 'not found';
+      sendBadge(format, badgeData);
+    }else{
+      badgeData.text[1] = 'error';
+      sendBadge(format, badgeData);
+    }
+  });
 }));   
 
 // Any badge.
