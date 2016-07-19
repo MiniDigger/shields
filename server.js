@@ -5333,8 +5333,8 @@ cache(function(data, match, sendBadge, request) {
       sendBadge(format, badgeData);
     }
     if (response.statusCode == 200) {
-      var body = JSON.parse(buffer);
-      badgeData.text[1] = body.downloads;
+      var json = JSON.parse(body);
+      badgeData.text[1] = json.downloads;
       sendBadge(format, badgeData);
     }else if(response.statusCode == 404) {
       badgeData.text[1] = 'not found';
