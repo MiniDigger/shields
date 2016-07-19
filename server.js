@@ -5327,7 +5327,7 @@ cache(function(data, match, sendBadge, request) {
   if (badgeData.template === 'social') {
    badgeData.logo = badgeData.logo || logos.github;
   }
-  request('http://www.google.com', function (error, response, body) {
+  request('https://api.spiget.org/v2/resources/' + resource, function (error, response, body) {
     if(error || (response.statusCode != 200 && response.statusCode != 404)){
       badgeData.text[1] = 'error';
       sendBadge(format, badgeData);
