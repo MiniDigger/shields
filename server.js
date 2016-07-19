@@ -5318,6 +5318,19 @@ cache(function(data, match, sendBadge, request) {
   });
 }));
 
+// spigot resource downloads
+camp.route(/^\/spigot\/resource\/download\/([^\/]+)\.(svg|png|gif|jpg|json)$/,
+cache(function(data, match, sendBadge, request) {
+  var resource = match[1];  // eg, 13932 or free-fast-async-worldedit-voxelsniper-βeta
+  var format = match[2];
+  var badgeData = getBadgeData('resource downloads', data);
+  if (badgeData.template === 'social') {
+   badgeData.logo = badgeData.logo || logos.github;
+  }
+  badgeData.text[1] = 'test';
+  sendBadge(format, badgeData);
+}   
+
 // Any badge.
 camp.route(/^\/(:|badge\/)(([^-]|--)*?)-(([^-]|--)*)-(([^-]|--)+)\.(svg|png|gif|jpg)$/,
 function(data, match, end, ask) {
